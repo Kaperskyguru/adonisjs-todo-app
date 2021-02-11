@@ -1,0 +1,21 @@
+
+@layout('layouts/app')
+@section('main')
+  <form action="{{ route('AuthController.login') }}" method="post">
+    <div>
+      <label for="email">Email</label>
+      <input type="text" name="email" value="{{ flashMessages.get('email') || '' }}" />
+      <p>{{ flashMessages.get('auth.errors.uid') || '' }}</p>
+    </div>
+{{ csrfField() }}
+    <div>
+      <label for="password">Password</label>
+      <input type="password" name="password" />
+      <p>{{ flashMessages.get('auth.errors.password') || '' }}</p>
+    </div>
+
+    <div>
+      <button type="submit">Login</button>
+    </div>
+  </form>
+@endsection

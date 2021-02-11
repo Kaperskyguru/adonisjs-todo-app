@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrfToken }}">
+
+    <title>Adonis Todo</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
+    <!-- Styles -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="font-sans antialiased">
+    <div class="min-h-screen bg-gray-100">
+        
+        <!-- Page Heading -->
+        <header class="bg-white shadow mb-4">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+               @include('layouts.navigation')
+            </div>
+        </header>
+
+        <div class="max-w-7xl mx-auto sm:px-6 ">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ safe('Dashboard') }}
+            </h2>
+        </div>
+
+        <main>
+            @section('main')
+
+            @endsection
+        </main>
+    </div>
+</body>
+
+</html>

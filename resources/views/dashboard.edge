@@ -1,0 +1,67 @@
+@layout('layouts/app')
+@section('main')
+
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <a href="/todos/create" class="btn btn-primary">Add new todo</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <div class="panel-bod">
+                    <table class="table">
+
+                        <!-- Table Headings -->
+                        <thead>
+                            <th>All Todos</th>
+                            <th>
+                                <a class="btn btn-warning" href="/todos/user">Show mine</a>
+                            </th>
+                            <th>
+                                <a class="btn btn-info" href="/dashboard">Show All</a>
+                            </th>
+                        </thead>
+
+                        <!-- Table Body -->
+                        <tbody class="max-w-full">
+                            @each(todo in todos)
+                            <tr class="max-w-full">
+                                <!-- Task Name -->
+                                <td class="pt-5 pb-5 pr-5">
+                                    <h1 class="sm:font-bold">{{ todo.title }}</h1>
+                                    <p>{{ todo.desc }}</p>
+                                    <p class="pt-2 text-gray-500"> Added By: {{ todo.userId == auth.user.id? 'You':todo.user.name  }}</p>
+                                </td>
+
+                                <td>
+                                    <!-- TODO: Delete Button -->
+                                    <div>
+                                        <a href="/todos/{{todo.id}}" class="bg-green-500 btn btn-success">View</a>
+                                        @if(todo.userId == auth.user.id)
+                                        <a href=" /todos/{{todo.id}}/edit" class="bg-yellow-500 btn btn-primary">Edit</a>
+
+                                        <form class="" method="POST" action="/todos/{{todo.id}}?_method=DELETE">
+                                            {{ csrfField() }}
+                                            <button class="bg-red-500  btn btn-danger">Delete</button>
+                                        </form>
+                                        @endif
+                                    </div>
+                                </td>
+                            </tr>
+                            @endeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

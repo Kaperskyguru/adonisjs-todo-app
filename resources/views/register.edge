@@ -1,0 +1,29 @@
+
+@layout('layouts/app')
+@section('main')
+
+  <form action="{{ route('AuthController.register') }}" method="post">
+    <div>
+      <label for="email">Email</label>
+      <input type="text" name="email" value="{{ flashMessages.get('email') || '' }}" />
+      <p>{{ flashMessages.get('errors.email') || '' }}</p>
+    </div>
+
+    <div>
+      <label for="password">Password</label>
+      <input type="password" name="password" />
+      <p>{{ flashMessages.get('errors.password') || '' }}</p>
+    </div>
+
+    <div>
+      <label for="password_confirmation">Re-Enter Password</label>
+      <input type="password" name="password_confirmation" />
+      <p>{{ flashMessages.get('errors.password_confirmation') || '' }}</p>
+    </div>
+
+    <div>
+      <button type="submit">Create Account</button>
+    </div>
+  </form>
+
+@endsection

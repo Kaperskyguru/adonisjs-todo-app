@@ -1,0 +1,27 @@
+@layout('layouts/app')
+@section('main')
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <form class="max-w-full" method="post" action="{{ route('todos.store') }}">
+                        {{ csrfField() }}
+
+                        <div class="form-group mb-3">
+                            <label class=""> Title </label>
+                            <input required name="title" placeholder="Enter title" class="form-control" />
+                        </div>
+                       
+                        <div class="form-group mb-3">
+                            <label class="">Description </label>
+                            <textarea rows="5" required name="desc" class="form-control"></textarea>
+                        </div>
+                       
+                        <button class="btn btn-success">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

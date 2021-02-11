@@ -1,0 +1,31 @@
+@layout('layouts/app')
+@section('main')
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <form class="" method="POST" action="{{ route('todos.update', {id : todo.id}) }}?_method=PUT">
+                        <div class="form-group mb-3">
+                            <label class="">Title</label>
+                            <input name="title" placeholder="Enter title" class="p-3 border-gray-900 form-control" value="{{todo.title}}" />
+                        </div>
+              
+                        <div class="form-group mb-3">
+                            <label class="">Description</label>
+                            <textarea rows="5" name="desc" class="form-control">{{ todo.desc }}</textarea>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input name="status" id="status" type="checkbox" class="form-check-input" {{todo.status==1 ? 'checked': ''}} />
+                            <label class="form-check-label" for="status">Completed</label>
+                        </div>
+
+                        <button class="btn btn-success">Update</button>
+                        {{ csrfField() }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

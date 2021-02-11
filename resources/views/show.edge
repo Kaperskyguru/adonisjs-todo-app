@@ -1,0 +1,52 @@
+@layout('layouts/app')
+@section('main')
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <div class="panel-bod">
+                        <table class="table">
+
+                            <!-- Table Headings -->
+                            <thead>
+                                <th>Todo</th>
+                                <th>&nbsp;</th>
+                            </thead>
+
+                            <!-- Table Body -->
+                            <tbody class="max-w-full">
+                                <tr class="max-w-full">
+                                    <!-- Task Name -->
+                                    <td class="pt-5 pb-5 pr-5">
+                                        <!-- <div class=""> -->
+                                        <h1 class="sm:font-bold">{{ todo.title }}</h1>
+                                        <p>{{ todo.desc }}</p>
+                                        <div class="flex content-between">
+                                            {{--  <p class="pt-2 text-gray-500 pr-5"> Added By: {{ todo.user.name }}</p>  --}}
+                                            <p class="pt-2 text-gray-500"> Status: {{ todo.status == 1? "Done": "Pending"}}</p>
+                                        </div>
+
+                                    </td>
+
+                                    <td>
+                                        <!-- TODO: Delete Button -->
+                                    <div>
+                                        @if(todo.userId == auth.user.id)
+                                        <a href=" /todos/{{todo.id}}/edit" class="bg-yellow-500 btn btn-primary">Edit</a>
+                                        <form class="" method="POST" action="/todos/{{todo.id}}?_method=DELETE">
+                                            {{ csrfField() }}
+                                            <button class="bg-red-500  btn btn-danger">Delete</button>
+                                        </form>
+                                        @endif
+                                    </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
